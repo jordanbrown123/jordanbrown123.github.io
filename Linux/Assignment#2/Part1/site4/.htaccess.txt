@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Only Mr.user1 can access this domain"
+AuthUserFile /etc/httpd/conf.d/.htpasswd
+Require valid-user

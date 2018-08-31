@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+
+  ServerName www.site2.com
+  DocumentRoot /var/www/html/www.site2.com
+  ErrorLog /var/log/httpd/www.site2.com/error.log
+  CustomLog /var/log/httpd/www.site2.com/access.log combined
+  Options -Indexes
+
+  <Directory "/var/www/html/www.site2.com">
+   AllowOverride AuthConfig
+  </Directory>
+
+</VirtualHost>

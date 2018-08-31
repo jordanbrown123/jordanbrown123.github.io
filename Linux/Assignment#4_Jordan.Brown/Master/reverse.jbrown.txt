@@ -1,0 +1,30 @@
+$TTL 86400
+@   IN  SOA     masterdns.jbrown.local. root.jbrown.local. (
+
+        2017110815  ;Serial
+        3600        ;Refresh
+        1800        ;Retry
+        604800      ;Expire
+        86400       ;Minimum TTL
+
+)
+
+@       IN  NS          masterdns.jbrown.local.
+@       IN  NS          secondarydns.jbrown.local.
+@       IN  PTR         jbrown.local.
+
+masterdns       IN  A           192.168.2.32
+secondarydns    IN  A           192.168.2.33
+mysql           IN  A           192.168.2.34
+ssh             IN  A           192.168.2.35
+tp              IN  A           192.168.2.36
+intranet        IN  A           192.168.2.37
+client          IN  A           192.168.2.38
+
+32              IN  PTR         masterdns.jbrown.local.
+33              IN  PTR         secondarydns.jbrown.local.
+34              IN  PTR         mysql.jbrown.local.
+35              IN  PTR         ssh.jbrown.local.
+36              IN  PTR         tp.jbrown.local.
+37              IN  PTR         intranet.jbrown.local.
+38              IN  PTR         client.jbrown.local.

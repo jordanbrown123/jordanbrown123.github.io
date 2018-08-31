@@ -1,0 +1,22 @@
+<VirtualHost *:80>
+
+  ServerName www.site6.com
+  DocumentRoot /var/www/html/www.site6.com
+  ServerAlias site6.com
+  ErrorLog /var/log/httpd/www.site6.com/error.log
+  CustomLog /var/log/httpd/www.site6.com/access.log combined
+
+ <location /server-status>
+   SetHandler server-status
+ </location>
+
+ <location /server-info>
+   SetHandler server-info
+ </location>
+
+ <Directory /var/www/cgi-bin>
+   Options +ExecCGI
+   AddHandler cgi-script .cgi .pl
+ </Directory>
+
+</VirtualHost>

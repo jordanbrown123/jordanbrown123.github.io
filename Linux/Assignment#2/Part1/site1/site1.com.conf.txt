@@ -1,0 +1,9 @@
+<VirtualHost *:80>
+
+  ServerName www.site1.com
+  DocumentRoot /var/www/html/www.site1.com
+  ErrorLog /var/log/httpd/www.site1.com/error.log
+  CustomLog /var/log/httpd/www.site1.com/access.log combined
+  Options -Indexes
+
+</VirtualHost>

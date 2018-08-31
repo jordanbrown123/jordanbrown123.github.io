@@ -1,0 +1,9 @@
+<VirtualHost *:80>
+
+  ServerName www.benchmarkinggg.com
+  ServerAlias benchmarkinggg.com
+  DocumentRoot /var/www/html/www.benchmarkinggg.com
+  ErrorLog /var/log/httpd/benchmark.com/error.log
+  CustomLog /var/log/httpd/benchmark.com/access.log combined
+
+</VirtualHost>

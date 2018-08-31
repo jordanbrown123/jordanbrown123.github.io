@@ -1,0 +1,18 @@
+<VirtualHost *:80>
+
+  ServerName www.site7.com
+  DocumentRoot "/var/www/html/www.site7.com"
+  ServerAlias site7.com
+  ErrorLog /var/log/httpd/www.site7.com/error.log
+  CustomLog /var/log/httpd/www.site7.com/access.log combined
+  Options -indexes
+
+  <Directory "/var/www/html/www.site7.com">
+    AllowOverride AuthConfig
+    Redirect "/" "https://www.site7.com/"
+    Order deny,allow
+    Deny from all
+    Allow from 192.168.1.13/24
+  </Directory>
+
+</VirtualHost>

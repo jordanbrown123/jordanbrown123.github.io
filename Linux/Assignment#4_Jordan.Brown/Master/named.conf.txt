@@ -1,0 +1,116 @@
+//
+// named.conf
+//
+// Provided by Red Hat bind package to configure the ISC BIND named(8) DNS
+// server as a caching only nameserver (as a localhost DNS resolver only).
+//
+// See /usr/share/doc/bind*/sample/ for example named configuration files.
+//
+
+options {
+
+listen-on port 53 { 192.168.2.33; 172.16.102.118;};
+
+#listen-on-v6 port 53 { ::1; };
+
+directory "/var/named";
+
+dump-file "/var/named/data/cache_dump.db";
+
+        statistics-file "/var/named/data/named_stats.txt";
+
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+
+allow-query{ 192.168.2.32; 172.16.102.122; };
+
+allow-transfer{ 192.168.2.32; 172.16.102.122;};
+
+recursion yes;
+
+dnssec-enable yes;
+
+dnssec-validation yes;
+
+dnssec-lookaside auto;
+
+
+};
+
+logging {
+        channel default_debug {
+                file "data/named.run";
+                severity dynamic;
+        };
+};
+
+/*
+
+zone "." IN {
+
+type hint;
+
+file "named.ca";
+
+};
+
+*/
+
+                file "forward.jbrown";
+
+                allow-update { none; };
+
+        };
+
+        zone "2.168.192.in-addr.arpa" IN {
+
+                type master;
+
+                file "reverse.jbrown";
+
+                allow-update { none; };
+
+        };
+
+                include "/etc/named.rfc1912.zones";
+};
+
+view "external" {
+        match-clients { !key external; 172.16.102/24; };
+        recursion no;
+        allow-transfer { 172.16.102/24; };
+
+
+        zone "jbrown.local" IN {
+
+                type master;
+
+                file "forward_ext.jbrown";
+
+                allow-update { none; };
+
+
+        };
+
+        zone "102.16.172.in-addr.arpa" IN {
+
+                type master;
+
+		 file "reverse_ext.jbrown";
+
+                allow-update { none; };
+
+        };
+
+                include "/etc/named.rfc1912.zones";
+
+};
+
+
+/*
+
+include "/etc/named.rfc1912.zones";
+
+*/
+include "/etc/named.root.key";
+
+

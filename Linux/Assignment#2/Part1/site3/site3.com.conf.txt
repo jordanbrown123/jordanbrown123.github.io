@@ -1,0 +1,25 @@
+<VirtualHost *:80>
+
+  ServerName www.site3.com
+  DocumentRoot /var/www/html/www.site3.com
+ #ServerAlias site3.com
+  ErrorLog /var/log/httpd/www.site3.com/error.log
+  CustomLog /var/log/httpd/www.site3.com/access.log combined
+
+<Directory "/var/www/html/www.site3.com">
+  IndexOptions ShowForbidden FancyIndexing HTMLTable
+  Order deny,allow
+  Deny from all
+  Allow from 192.168.1.13/24
+</Directory>
+
+<Directory /var/www/html/www.site3.com/ProtectedFiles>
+  AllowOverride none
+  Options Indexes FollowSymLinks
+  IndexOptions ShowForbidden FancyIndexing HTMLTable
+  AuthType Basic
+  AuthName "Protected Content"
+  AuthUserFile /etc/httpd/.htpasswd
+  Require valid-user
+</Directory>
+</VirtualHost>
